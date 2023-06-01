@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="heroSection" class="hero-section cart-section">
+        <div class="navbar">
+            <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
+                height="80%" alt="">
+            <div>
+                <button style="background-color: #196ae5;" onclick="handleCart()">cart</button>
+                <button onclick="handleLogout()">logout</button>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" name="" onkeyup="sort()" id="searchCategories" placeholder="search categories">
+            <select id="choosePrice" onclick="sort()">
+                <option disabled selected value="">--choose price option--</option>
+                <option value="increasing order">low to high</option>
+                <option value="decreasing order">high to low</option>
+            </select>
+            <select id="chooseRating" onclick="sort()">
+                <option disabled selected value="">--choose rating option--</option>
+                <option value="0">above 0</option>
+                <option value="1">above 1</option>
+                <option value="2">above 2</option>
+                <option value="3">above 3</option>
+                <option value="4">above 4</option>
+            </select>
+        </div>
+        <div id="displayProduct" class="display-product"></div>
+    </div>
+    <%= javascript_include_tag "allproductsjs","data-turbo-track" => "reload" %>
+</body>
+
+</html>

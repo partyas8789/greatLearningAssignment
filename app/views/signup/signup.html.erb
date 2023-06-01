@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="hero-section">
+        <h2 class="heading" >Welcome to Marketplace</h2>
+        <div class="sign-up-page">
+            <div class="sign-up-page-container">
+                <h2 class="heading" >Create Account</h2>
+                <div class="input-feild">
+                    <input onkeyup="nameCheck(event)" type="text" name="" placeholder="Name">
+                    <div class="error"></div>
+                </div>
+                
+                <div class="input-feild">
+                    <input type="email" onkeyup="emailCheck(event)" name="" placeholder="Email">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input onkeyup="passwordCheck(event)" type="password" name="" placeholder="Password">
+                    <div class="error"></div>
+                </div>
+                <div class="button-container">
+                    <button onclick="handleSignup()">SIGNUP</button>
+                    <button class="navigate-button" onClick="gotoSignin()">SIGNIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= javascript_include_tag "app","data-turbo-track" => "reload"  %>
+</body>
+
+</html>

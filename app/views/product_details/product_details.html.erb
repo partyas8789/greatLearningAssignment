@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="heroSection" class="hero-section cart-section">
+    <div class="navbar">
+        <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
+            height="80%" alt="">
+        <div>
+            <button style="background-color: #196ae5;" onclick="handleCart()">cart</button>
+            <button onclick="handleLogout()">logout</button>
+        </div>
+    </div>
+
+    <div class="product-detail-container">
+        <div class="back-div">
+            <button onclick="handleBack()">back</button>
+        </div>
+        <div id="productDetailContainer" class="product-details-div"></div>
+    </div>
+    
+    <%= javascript_include_tag "productDetailsjs","data-turbo-track" => "reload" %>
+</body>
+
+</html>

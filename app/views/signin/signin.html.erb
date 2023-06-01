@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     
+</head>
+<body>
+    <div class="hero-section">
+        <h2 class="heading"> Welcome back to Marketplace</h2>
+        <div class="sign-in-page">
+            <div class="sign-in-page-container">
+                <h2 class="heading">Welcome Back!!</h2>
+                <div class="input-feild">
+                    <input type="email" onkeyup="emailCheck(event)" name="" id="email" placeholder="Email">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input type="password" onkeyup="passwordCheck(event)" name="" id="password" placeholder="Password" >
+                    <div class="error"></div>
+                </div>
+                <div class="button-container">
+                    <button onclick="handleSignin()" >SIGNIN</button>
+                    <button class="navigate-button" onClick="gotoSignup()" >SIGNUP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= javascript_include_tag "signinjs","data-turbo-track" => "reload"  %>
+</body>
+</html>
