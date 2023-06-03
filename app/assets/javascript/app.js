@@ -5,6 +5,7 @@ let emailAlert = document.getElementById("emailAlert")
 let passwordAlert = document.getElementById("passwordAlert")
 
 let email = "";
+let password = "";
 
 const error = {
     names: false,
@@ -18,7 +19,6 @@ const nameCheck = (event) => {
     const siblinng = event.target.nextElementSibling
     if (names === "" || names.length < 3 || names.length > 17 || /^[A-Za-z ]+$/.test(names) == false) {
         error.names = false
-        console.log(event.target.nextElementSibling);
         siblinng.innerText = "Name must be contain 3-16 characters"  
     }
     else {
@@ -42,7 +42,7 @@ const emailCheck = (event) => {
 }
 
 const passwordCheck = (event) => {
-    const password = event.target.value
+    password = event.target.value
     const siblinng = event.target.nextElementSibling
 
     if (password === "" || password.length < 6 || password.length > 20 || /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) == false) {
