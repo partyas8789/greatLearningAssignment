@@ -25,7 +25,7 @@ const emailCheck = (event) => {
 
 const passwordCheck = (event) => {
     password = event.target.value
-    const siblinng = event.target.nextElementSibling    
+    const siblinng = event.target.nextElementSibling
     if (password === "" || password.length < 6 || password.length > 20 || /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) == false) {
         error.password = false
         siblinng.innerText = "Password must be alphanumeric (@,_and - are also allowed) and between 6-20 characters"
@@ -38,27 +38,37 @@ const passwordCheck = (event) => {
 
 const handleSignin = () => {
     if (error.email && error.password) {
-        let toogle = false
-        for (const key in localStorage) {
-            if (key == email && localStorage[key] == password) {
-                toogle = true
-                email = "";
-                password = "";
+        const url = 'http://127.0.0.1:3000/api/user/v1/users';
+
+        const fetchingData = async () => {
+            let toogle = false
+            const response = await fetch(url)
+            const allUserData = await response.json()
+            console.log(allUserData);
+            if (allUserData !== "" && allUserData !== undefined && allUserData.length > 0) {
+                allUserData.map((eachUser) => {
+                    if (eachUser["email"] == email && eachUser["password"] == password) {
+                        toogle = true
+                        email = "";
+                        password = ""
+                    }
+                })
+            }
+
+            if (toogle) {
+                console.log("successfully login");
+                localStorage.token = true
+                window.location.href = "./allproducts"
+            } else {
+                alert("please enter correct email & password !!!")
             }
         }
-
-        if (toogle) {
-            localStorage.token = true
-            window.location.href="./allproducts"
-        } else {
-            alert("please enter correct email & password !!!")
-        }
+        fetchingData()
     } else {
         alert("please enter email & password !!!")
-
     }
 }
 
-const gotoSignup = () =>{
-    window.location.href="./signup"
+const gotoSignup = () => {
+    window.location.href = "./signup"
 }

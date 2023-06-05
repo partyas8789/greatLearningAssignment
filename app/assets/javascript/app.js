@@ -6,6 +6,7 @@ let passwordAlert = document.getElementById("passwordAlert")
 
 let email = "";
 let password = "";
+let names = "";
 
 const error = {
     names: false,
@@ -15,11 +16,11 @@ const error = {
 
 
 const nameCheck = (event) => {
-    const names = event.target.value
+    names = event.target.value
     const siblinng = event.target.nextElementSibling
     if (names === "" || names.length < 3 || names.length > 17 || /^[A-Za-z ]+$/.test(names) == false) {
         error.names = false
-        siblinng.innerText = "Name must be contain 3-16 characters"  
+        siblinng.innerText = "Name must be contain 3-16 characters"
     }
     else {
         error.names = true
@@ -57,28 +58,63 @@ const passwordCheck = (event) => {
 
 const handleSignup = () => {
     if (error.names && error.email && error.password) {
-        let toogle = false
-        for (const key in localStorage) {
-            if (key == email) {
-                toogle = true
-                names = ""
-                email = "";
-                password = ""
+        const url = 'http://127.0.0.1:3000/api/user/v1/users';
+
+        const fetchingData = async () => {
+            let toogle = false
+            const response = await fetch(url)
+            const allUserData = await response.json()
+            console.log(allUserData);
+            if (allUserData !== "" && allUserData !== undefined && allUserData.length > 0) {
+                allUserData.map((eachUser) => {
+                    if (eachUser["email"] == email) {
+                        toogle = true
+                        names = ""
+                        email = "";
+                        password = ""
+                    }
+                })
+                if (!toogle) {
+                    console.log("welcome to new user");
+                    // localStorage.token = true
+                    // window.location.href = "./allproducts"                    
+
+                    const data = {
+                        name: names,
+                        email: email,
+                        password: password
+                    };
+
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    };
+
+                    fetch(url, options)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            console.log('Response:', responseData);
+                            localStorage.token = true
+                            window.location.href = "./allproducts"
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                } else {
+                    alert("this email is already registered, please go to signin page")
+                }
             }
         }
-
-        if (!toogle) {
-            localStorage.token = true
-            window.location.href="./allproducts"
-            localStorage.setItem(email, password);
-        } else {
-            alert("this email is already registered, please go to signin page")
-        }
+        fetchingData()
     } else {
         alert("please enter all details !!!")
     }
 }
 
-const gotoSignin = ()=>{
-    window.location.href="./signin"
+const gotoSignin = () => {
+    window.location.href = "./signin"
 }
