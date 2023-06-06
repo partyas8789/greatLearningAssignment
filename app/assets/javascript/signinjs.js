@@ -44,19 +44,18 @@ const handleSignin = () => {
             let toogle = false
             const response = await fetch(url)
             const allUserData = await response.json()
-            console.log(allUserData);
             if (allUserData !== "" && allUserData !== undefined && allUserData.length > 0) {
                 allUserData.map((eachUser) => {
                     if (eachUser["email"] == email && eachUser["password"] == password) {
                         toogle = true
                         email = "";
                         password = ""
+                        localStorage.userId = eachUser.id
                     }
                 })
             }
 
             if (toogle) {
-                console.log("successfully login");
                 localStorage.token = true
                 window.location.href = "./allproducts"
             } else {

@@ -64,7 +64,6 @@ const handleSignup = () => {
             let toogle = false
             const response = await fetch(url)
             const allUserData = await response.json()
-            console.log(allUserData);
             if (allUserData !== "" && allUserData !== undefined && allUserData.length > 0) {
                 allUserData.map((eachUser) => {
                     if (eachUser["email"] == email) {
@@ -75,10 +74,6 @@ const handleSignup = () => {
                     }
                 })
                 if (!toogle) {
-                    console.log("welcome to new user");
-                    // localStorage.token = true
-                    // window.location.href = "./allproducts"                    
-
                     const data = {
                         name: names,
                         email: email,
@@ -96,7 +91,6 @@ const handleSignup = () => {
                     fetch(url, options)
                         .then(response => response.json())
                         .then(responseData => {
-                            console.log('Response:', responseData);
                             localStorage.token = true
                             window.location.href = "./allproducts"
                         })

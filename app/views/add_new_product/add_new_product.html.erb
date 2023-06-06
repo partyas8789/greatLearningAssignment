@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="heroSection" class="hero-section ">
+        <div class="navbar">
+            <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
+            height="80%" alt="">
+            
+            <div>
+                <button style="background-color: #196ae5;" onclick="handleBack()">back</button>
+                <button onclick="handleLogout()">logout</button>
+            </div>
+        </div>
+        <div class="add_new_product">
+            <form class="add_new_product_container" onsubmit="handleSubmitProduct(event)">
+                <div class="input-feild">
+                    <input onkeyup="titleCheck(event)" type="text" name="" placeholder="title">
+                    <div class="error"></div>
+                </div>        
+                <div class="input-feild">
+                    <input type="text" onkeyup="priceCheck(event)" name="" placeholder="price">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input onkeyup="descriptionCheck(event)" type="text" name="" placeholder="description">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input onkeyup="categoryCheck(event)" type="text" name="" placeholder="category">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input type="text" onkeyup="imageLinkCheck(event)" name="" placeholder="image_link">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input onkeyup="rateCheck(event)" type="text" name="" placeholder="rate">
+                    <div class="error"></div>
+                </div>
+                <div class="input-feild">
+                    <input onkeyup="totalPersonCheck(event)" type="number" name="" placeholder="total_person">
+                    <div class="error"></div>
+                </div>
+                <div class="button-container">
+                    <button type="submit">submit</button>
+                </div>
+    
+            </form>
+        </div>        
+    </div>   
+    <%= javascript_include_tag "addNewProduct","data-turbo-track" => "reload"  %>
+
+</body>
+
+</html>

@@ -15,6 +15,9 @@
             <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
                 height="80%" alt="">
             <div>
+                <button style="background-color: #196ae5;" onclick="goToNewProduct()">Add new product</button>
+            </div>
+            <div>
                 <button style="background-color: #196ae5;" onclick="handleCart()">cart</button>
                 <button onclick="handleLogout()">logout</button>
             </div>
@@ -35,7 +38,24 @@
                 <option value="4">above 4</option>
             </select>
         </div>
-        <div id="displayProduct" class="display-product"></div>
+        <div id="displayProduct" class="display-product">
+
+            <% @products.each do |product| %>
+                <div class="card">
+                    <img src=<%= product.image_link %> alt="" srcset="" height="50%" width="100%" />
+                    <section class="titleSection" > <%= product.title %></section>
+                    <section class="categorySection" >
+                    <h3><%= product.category %></h3> 
+                    <h3 class="price">$ <%= product.price %></h3>                
+                </section>
+                <section class="buttonSection" >
+                    <button onclick="getDetails(<%= product.id %>)">More Details</button>
+                    <button id=<%= product.id %> onclick="addCartItems(<%= product.id %>)">add to cart</button>
+                </section>        
+                </div>
+            <% end %>
+        </div>
+
     </div>
     <%= javascript_include_tag "allproductsjs","data-turbo-track" => "reload" %>
 </body>

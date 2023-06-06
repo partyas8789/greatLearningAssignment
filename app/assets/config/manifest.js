@@ -7,3 +7,4 @@
 //= link cartjs.js
 //= link allproductsjs.js
 //= link productDetailsjs.js
+//= link addNewProduct.js

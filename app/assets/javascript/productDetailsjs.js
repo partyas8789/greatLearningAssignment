@@ -3,19 +3,19 @@ const getDetails = async()=>{
     const container = document.getElementById("productDetailContainer")
     container.innerHTML=`<h1>Loading...</h1>`
     
-    const response = await fetch(`http://fakestoreapi.com/products/${+localStorage.productId}`)
+    const response = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${+localStorage.productId}`)
     const productDetails = await response.json()
     
     container.innerHTML=`
         <div class="product-details-img">
-                <img src=${productDetails.image} style="max-height: 100%;" alt="" srcset=""  width="100%" />
+                <img src=${productDetails.image_link} style="max-height: 100%;" alt="" srcset=""  width="100%" />
             </div>
             <div class="product-alldetails">
                 <section class="section">${productDetails.title}</section>
                 <section class="sections">${productDetails.category}</section>
                 <section class="sections">
-                    <div><i class="fa fa-star" aria-hidden="true"></i> ${productDetails.rating.rate}</div>
-                    <div><i class="fa fa-user" aria-hidden="true"></i> ${productDetails.rating.count}</div>
+                    <div><i class="fa fa-star" aria-hidden="true"></i> ${productDetails.rate}</div>
+                    <div><i class="fa fa-user" aria-hidden="true"></i> ${productDetails.total_person}</div>
                 </section>
                 <div class="description">
                     ${productDetails.description}
