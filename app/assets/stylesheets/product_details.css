@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.hero-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navbar {
+   background-color: #f4f8f7;
+   box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.4);
+}
+.navbar button {
+   background-color: red;
+   border: none;
+   border-radius: 8px;
+   padding: 10px 24px;
+   color: white;
+   display: inline-block;
+   text-align: center;
+   cursor: pointer;
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: 1.25px;
+   font-weight: 500;
+   text-transform: uppercase;
+   margin: 10px 0;
+}
+
+.product-detail-container {
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 800px;
+    height: 50vh;
+    /* width: 100vw;
+    height: 90vh; */
+    height: 90%;
+    width: 100%;
+}
+/* .product-detail-container {
+    height: 90%;
+    width: 100%;
+} */
+
+.back-div {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.back-div button {
+    border: none;
+    cursor: pointer;
+    background-color: #196ae5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 1.25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.product-details-div {
+    width: 100%;
+    height: 90%;
+    display: flex;
+}
+
+.product-details-img {
+    width: 30%;
+    height: 100%;
+    padding: 20px;
+}
+
+.product-alldetails {
+    width: 70%;
+    height: 100%;
+    padding: 20px;
+}
+
+.product-alldetails section div button {
+     background-color: #196ae5;
+     border: none;
+     color: white;
+     border-radius: 8px;
+     padding: 16px 24px;
+     display: inline-block;
+     text-align: center;
+     cursor: pointer;
+     font-size: 14px;
+     line-height: 24px;
+     letter-spacing: 1.25px;
+     font-weight: 500;
+     text-transform: uppercase;
+     margin-bottom: 50px;
+ }
+
+ .product-alldetails section div button {
+     margin-bottom: 0px;
+ }
+
+ .section {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    letter-spacing: .25px;
+    font-weight: 600;
+}
+
+.sections {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    letter-spacing: .25px;
+    font-weight: 600;
+}
+
+.sections div {
+    margin-right: 20px;
+}
+
+.description {
+    width: 100%;
+    height: 55%;
+
+    font-size: 10px;
+    font-size: 14px;
+    line-height: 16px;
+    line-height: 21px;
+    letter-spacing: 1.5px;
+    letter-spacing: .25px;
+}
+
+@media only screen and (max-width: 430px) {
+    .navbar {
+        padding-left: 10px;
+        padding-right: 2px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .product-detail-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
