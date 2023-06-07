@@ -8,3 +8,4 @@
 //= link allproductsjs.js
 //= link productDetailsjs.js
 //= link addNewProduct.js
+//= link addRatingjs.js

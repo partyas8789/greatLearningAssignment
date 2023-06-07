@@ -37,11 +37,7 @@ class Api::Product::V1::ProductsController < ApplicationController
   def update
     product = Product.find_by(id: params[:id])
     if product
-      product.update(title: params[:title],
-                    price: params[:price],     
-                    description: params[:description],      
-                    category: params[:category],      
-                    image_link: params[:image_link],      
+      product.update(     
                     rate: params[:rate],      
                     total_person: params[:total_person])
       render json: product, status: 200
@@ -53,6 +49,11 @@ class Api::Product::V1::ProductsController < ApplicationController
   end
 
   def destroy
+    product = Product.find_by(id: params[:id])
+    if product
+      product.destroy
+      render json: "product deleted successfully", status: 200  
+    end
   end
 
   private

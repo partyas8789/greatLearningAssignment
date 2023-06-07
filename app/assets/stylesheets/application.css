@@ -25,6 +25,39 @@
      padding-right: 50px;
  }
 
+ .add-rating {
+     width: 100%;
+     height: 90%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .add_rating_container {
+     width: 50%;
+     height: 70%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+     border-radius: 8px;
+     box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.4);
+
+ }
+
+ .add_rating_container .input-feild {
+     width: 70%;
+     height: 10%;
+ }
+
+ .add_rating_container .img-feild {
+     height: 50%;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
  .add_new_product {
      width: 100%;
      height: 90%;
@@ -103,7 +136,7 @@
 
  .card {
      width: 18rem;
-     height: 28rem;
+     height: 30rem;
      margin: 20px;
      box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.4);
      padding: 10px;
@@ -142,7 +175,7 @@
 
  .buttonSection {
      width: 100%;
-     height: 10%;
+     height: 20%;
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -150,7 +183,6 @@
  }
 
  .buttonSection button {
-     background-color: #e8f0fc;
      border: none;
      border-radius: 8px;
      padding: 4px 8px;
@@ -163,6 +195,14 @@
      letter-spacing: 1.5px;
      font-weight: 500;
      text-transform: uppercase;
+
+     background-color: #196ae5;
+     padding: 18px 10px;
+     font-size: 12px;
+     line-height: 24px;
+     letter-spacing: 1.25px;
+     font-weight: 600;
+     color: white;
  }
 
  .hero-section .heading {
@@ -374,7 +414,6 @@
      font-size: 18px;
      letter-spacing: .25px;
      font-weight: 600;
-
  }
 
  .sections div {
@@ -393,6 +432,7 @@
      letter-spacing: .25px;
  }
 
+ .product-alldetails section div button,
  .errorPageButton {
      background-color: #196ae5;
      border: none;
@@ -408,6 +448,10 @@
      font-weight: 500;
      text-transform: uppercase;
      margin-bottom: 50px;
+ }
+
+ .product-alldetails section div button {
+     margin-bottom: 0px;
  }
 
  .product-detail-container {
@@ -449,9 +493,9 @@
  }
 
  .cart_items_container .img_container img {
-    width: 90%;
-    max-height: 100%;
-}
+     width: 90%;
+     max-height: 100%;
+ }
 
  .cart_items_container .details {
      width: 60%;
@@ -565,6 +609,29 @@
      }
  }
 
+ @media only screen and (max-width: 650px) {
+
+     .allProductNavBar img,
+     .allProductNavBar div {
+         width: 30%;
+         margin: 0;
+         padding: 0;
+     }
+
+     .allProductNavBar div button {
+         width: 100%;
+         margin: 0;
+         padding: 0;
+     }
+
+     .allProductNavBar {
+         margin: 0;
+         padding: 0;
+         display: flex;
+         justify-content: space-between;
+     }
+ }
+
  ::-webkit-scrollbar {
-    display: none;
-  }
+     display: none;
+ }

@@ -16,6 +16,7 @@ const getDetails = async()=>{
                 <section class="sections">
                     <div><i class="fa fa-star" aria-hidden="true"></i> ${productDetails.rate}</div>
                     <div><i class="fa fa-user" aria-hidden="true"></i> ${productDetails.total_person}</div>
+                    <div><button onclick="gotoRatingPage()">give rating</button></div>
                 </section>
                 <div class="description">
                     ${productDetails.description}
@@ -34,6 +35,10 @@ const handleBack = () =>{
 const handleLogout = () =>{
     localStorage.token = false
     window.location.href="./signin"
+}
+
+const gotoRatingPage = () =>{
+    window.location.href="./giverate"
 }
 
 const handleCart = () =>{
