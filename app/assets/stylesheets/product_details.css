@@ -55,6 +55,7 @@
     height: 50vh;
     height: 90%;
     width: 100%;
+    
 }
 
 .product-details-div {
@@ -72,7 +73,7 @@
 .product-alldetails {
     width: 70%;
     height: 100%;
-    padding: 20px;
+    padding: 20px;    
 }
 
 .product-alldetails section div button {
@@ -113,7 +114,7 @@
     align-items: center;
     font-size: 18px;
     letter-spacing: .25px;
-    font-weight: 600;
+    font-weight: 600;    
 }
 
 .sections div {
@@ -152,9 +153,16 @@
     }
 }
 
+@media only screen and (max-width: 460px) {
+    .sections {
+        min-height: 15%;
+        flex-wrap: wrap;
+    }
+}
+
 @media only screen and (max-width: 350px) {
     .product-detail-container {
         padding-left: 10px;
-        padding-right: 10px;
+        padding-right: 10px;        
     }
 }
