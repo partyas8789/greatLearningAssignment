@@ -105,8 +105,21 @@ const totalPersonCheck = (event) => {
     }
 }
 
+function getCookies(name) {
+    const cDecoded = decodeURIComponent(document.cookie)
+    const cArray = cDecoded.split("; ")
+    let result = null
+    cArray.forEach(element=>{
+        if(element.indexOf(name)==0){
+            result = element.substring(name.length+1)
+        }
+    })
+    return result
+}
+const token = getCookies("token")
+
 const checkAccess = () => {
-    if (localStorage.token == "false") {
+    if (token != "true") {
         const heroSection = document.getElementById("heroSection")
         heroSection.innerHTML = `
         <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
@@ -119,7 +132,7 @@ const handleSubmitProduct = (event) => {
     event.preventDefault();
     checkAccess()
 
-    if (localStorage.token == "true") {
+    if (token == "true") {
 
         if (title && price && description && category && image_link && rate && total_person) {
 
@@ -145,7 +158,6 @@ const handleSubmitProduct = (event) => {
             fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
                 .then(response => response.json())
                 .then(responseData => {
-                    console.log('Response:', responseData);
                     window.location.href = "./allproducts"
                 })
                 .catch(error => {

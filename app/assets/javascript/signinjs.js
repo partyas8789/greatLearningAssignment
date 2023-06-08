@@ -9,6 +9,13 @@ const error = {
     password: false
 }
 
+function setCookies(name, value, daysToLive) {
+    const date = new Date()
+    date.setTime(date.getTime() + daysToLive * 24 * 60 * 60 * 1000) 
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/`
+ }
+
 const emailCheck = (event) => {
     email = event.target.value
     const siblinng = event.target.nextElementSibling
@@ -49,13 +56,13 @@ const handleSignin = () => {
                         toogle = true
                         email = "";
                         password = ""
-                        localStorage.userId = eachUser.id
+                        setCookies("userId",eachUser.id,365)
                     }
                 })
             }
 
             if (toogle) {
-                localStorage.token = true
+                setCookies("token",true,365)
                 window.location.href = "./allproducts"
             } else {
                 alert("please enter correct email & password !!!")

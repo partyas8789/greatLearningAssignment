@@ -1,12 +1,26 @@
 const cartItems = document.getElementById("cartItems")
 let totalPrice =0
+
+function getCookies(name) {
+    const cDecoded = decodeURIComponent(document.cookie)
+    const cArray = cDecoded.split("; ")
+    let result = null
+    cArray.forEach(element=>{
+        if(element.indexOf(name)==0){
+            result = element.substring(name.length+1)
+        }
+    })
+    return result
+}
+
+const userId = getCookies("userId")
 const displayCart = async () => {
     const response = await fetch("http://127.0.0.1:3000/api/cart/v1/carts/")
     const data = await response.json()
 
     data.map((eachData) => {
         const productDetails = JSON.parse(atob(eachData.productDetails))
-        if (eachData.user_id == localStorage.userId) {
+        if (eachData.user_id == userId) {
             totalPrice +=(productDetails.price * eachData.quantity)
             cartItems.innerHTML += `
                 <div class="cart_items_container" >
@@ -56,7 +70,8 @@ const gotoHome = () => {
     window.location.href = './allproducts'
 }
 
-if (localStorage.token == "false") {
+const token = getCookies("token")
+if (token != "true") {
     const herosection = document.getElementById("heroSection")
     herosection.innerHTML = `
     <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">

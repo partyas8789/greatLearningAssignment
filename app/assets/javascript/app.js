@@ -12,6 +12,14 @@ const error = {
     password: false
 }
 
+
+function setCookies(name, value, daysToLive) {
+    const date = new Date()
+    date.setTime(date.getTime() + daysToLive * 24 * 60 * 60 * 1000) 
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/`
+ }
+
 const nameCheck = (event) => {
     names = event.target.value
     const siblinng = event.target.nextElementSibling
@@ -88,7 +96,7 @@ const handleSignup = () => {
                     fetch(url, options)
                         .then(response => response.json())
                         .then(responseData => {
-                            localStorage.token = true
+                            setCookies("token","true",365)
                             window.location.href = "./allproducts"
                         })
                         .catch(error => {

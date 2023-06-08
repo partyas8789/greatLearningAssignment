@@ -1,8 +1,32 @@
 const herosection = document.getElementById("heroSection")
 var data;
+
+function setCookies(name, value, daysToLive) {
+    const date = new Date()
+    date.setTime(date.getTime() + daysToLive * 24 * 60 * 60 * 1000)
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/`
+}
+
+function deleteCookies(name) {
+    setCookies(name, null, null)
+}
+
+function getCookies(name) {
+    const cDecoded = decodeURIComponent(document.cookie)
+    const cArray = cDecoded.split("; ")
+    let result = null
+    cArray.forEach(element=>{
+        if(element.indexOf(name)==0){
+            result = element.substring(name.length+1)
+        }
+    })
+    return result
+}
+
 const cartItems = {}
 const handleLogout = () => {
-    localStorage.token = false
+    deleteCookies("token")
     window.location.href = "./signin"
 }
 const gotoSignin = () => {
@@ -14,6 +38,8 @@ async function findProduct() {
     data = await response.json()
     filteredData = data
 }
+
+const userId = getCookies("userId")
 
 const sort = () => {
     const category = document.getElementById("searchCategories").value
@@ -59,7 +85,7 @@ const displayCards = (productData) => {
 }
 
 const getDetails = (id) => {
-    localStorage.setItem("productId", id);
+    setCookies("productId", id, 365)
     window.location.href = `./allproductsDetails/${id}`
 }
 findProduct()
@@ -90,7 +116,7 @@ const addCartItems = (id) => {
         let toogle = false
         if (dataOfCart !== "" && dataOfCart !== undefined && dataOfCart.length > 0) {
             dataOfCart.map((eachData) => {
-                if (eachData.user_id == localStorage.userId && eachData.product_id == id) {
+                if (eachData.user_id == userId && eachData.product_id == id) {
                     toogle = true
                     const allParms = {
                         quantity: eachData.quantity + 1
@@ -118,7 +144,7 @@ const addCartItems = (id) => {
             const allParms = {
                 quantity: 1,
                 productDetails: base64,
-                user_id: localStorage.userId,
+                user_id: userId,
                 product_id: id
             };
 
@@ -141,7 +167,8 @@ const addCartItems = (id) => {
     }
     handleCart()
 }
-if (localStorage.token == "false") {
+const token = getCookies("token")
+if (token != "true") {
     herosection.innerHTML = `
     <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
         <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>

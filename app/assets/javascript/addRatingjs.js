@@ -3,7 +3,8 @@ const error = {
 }
 let rate
 const addImage = async () => {
-    const response = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${+localStorage.productId}`)
+    const productId = getCookies("productId")
+    const response = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${+productId}`)
     const productDetails = await response.json()
     const imgContainer = document.getElementById("imgContainer")
     imgContainer.innerHTML += `<img src=${productDetails.image_link} height="100%" alt="">`
@@ -22,10 +23,22 @@ const rateCheck = (event) => {
     }
 }
 
+function getCookies(name) {
+    const cDecoded = decodeURIComponent(document.cookie)
+    const cArray = cDecoded.split("; ")
+    let result = null
+    cArray.forEach(element=>{
+        if(element.indexOf(name)==0){
+            result = element.substring(name.length+1)
+        }
+    })
+    return result
+}
+
 const handleSubmit = () => {
     if (error.rate) {
-        const productId = localStorage.productId
-        const userId = localStorage.userId
+        const productId = getCookies("productId")
+        const userId = getCookies("userId") 
 
         const findData = async () => {
             const response = await fetch("http://127.0.0.1:3000/api/productrate/v1/productrates")
@@ -104,8 +117,9 @@ const handleSubmit = () => {
         alert("please enter valid rating of this product!!")
     }
 }
+const token = getCookies("token")
 
-if (localStorage.token == "false") {
+if (token != "true") {
     const herosection = document.getElementById("heroSection")
     herosection.innerHTML = `
     <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
