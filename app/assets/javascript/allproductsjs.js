@@ -69,7 +69,7 @@ const displayCards = (productData) => {
     productData.map((eachProduct) => {
         displayProduct.innerHTML += `
         <div class="card">
-            <img src=${eachProduct.image_link} alt="" srcset="" height="40%" width="100%" />
+            <img src=${eachProduct.image_link} alt="" srcset="" height="40%" />
             <section class="titleSection" >${eachProduct.title}</section>
             <section class="categorySection" >
                 <h3>${eachProduct.category}</h3> 
