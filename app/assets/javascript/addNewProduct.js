@@ -1,5 +1,3 @@
-
-
 let title;
 let price;
 let description;
@@ -21,7 +19,7 @@ const error = {
 const titleCheck = (event) => {
     title = event.target.value
     const siblinng = event.target.nextElementSibling
-    if (title === "" || title.length < 3 ) {
+    if (title === "" || title.length < 3) {
         error.title = false
         siblinng.innerText = "title must be contain more then 3 characters"
     }
@@ -58,7 +56,7 @@ const descriptionCheck = (event) => {
 const categoryCheck = (event) => {
     category = event.target.value
     const siblinng = event.target.nextElementSibling
-    if (category === "" || category.length < 3 || category.length > 50 ) {
+    if (category === "" || category.length < 3 || category.length > 50) {
         error.category = false
         siblinng.innerText = "category must be contain 3-50 characters"
     }
@@ -67,6 +65,7 @@ const categoryCheck = (event) => {
         siblinng.innerText = ""
     }
 }
+
 const imageLinkCheck = (event) => {
     image_link = event.target.value
     const siblinng = event.target.nextElementSibling
@@ -79,6 +78,7 @@ const imageLinkCheck = (event) => {
         siblinng.innerText = ""
     }
 }
+
 const rateCheck = (event) => {
     rate = event.target.value
     const siblinng = event.target.nextElementSibling
@@ -91,6 +91,7 @@ const rateCheck = (event) => {
         siblinng.innerText = ""
     }
 }
+
 const totalPersonCheck = (event) => {
     total_person = event.target.value
     const siblinng = event.target.nextElementSibling
@@ -104,63 +105,66 @@ const totalPersonCheck = (event) => {
     }
 }
 
-const handleBack = () => {
-    window.location.href = './allproducts'
-}
-
-const handleLogout = () => {
-    localStorage.token = false
-    window.location.href = './signin'
-}
-
-if (localStorage.token == "false") {
-    const heroSection = document.getElementById("heroSection")
-    heroSection.innerHTML = `
-    <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
-        <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
-    `
-}
-
-const gotoSignin = () => {
-    window.location.href = "./signin"
+const checkAccess = () => {
+    if (localStorage.token == "false") {
+        const heroSection = document.getElementById("heroSection")
+        heroSection.innerHTML = `
+        <img src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
+            <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
+        `
+    }
 }
 
 const handleSubmitProduct = (event) => {
     event.preventDefault();
+    checkAccess()
 
-    if (title && price && description && category && image_link && rate && total_person) {
+    if (localStorage.token == "true") {
 
-        const data = {
-            title: title,
-            price: price,
-            description: description,
-            category: category,
-            image_link: image_link,
-            rate: rate,
-            total_person: total_person
+        if (title && price && description && category && image_link && rate && total_person) {
 
-        };
+            const data = {
+                title: title,
+                price: price,
+                description: description,
+                category: category,
+                image_link: image_link,
+                rate: rate,
+                total_person: total_person
 
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
+            };
 
-        fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
-            .then(response => response.json())
-            .then(responseData => {
-                console.log('Response:', responseData);
-                window.location.href = "./allproducts"
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
+                .then(response => response.json())
+                .then(responseData => {
+                    console.log('Response:', responseData);
+                    window.location.href = "./allproducts"
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        else {
+            alert("please enter all details!!!")
+        }
+
     }
-    else {
-        alert("please enter all details!!!")
-    }
-
 }
+
+const gotoHome = () => {
+    window.location.href = 'http://127.0.0.1:3000/allproducts'
+}
+
+const gotoSignin = () => {
+    window.location.href = "http://127.0.0.1:3000/signin"
+}
+
+checkAccess()

@@ -19,7 +19,7 @@
                 <button style="background-color: #196ae5;" onclick="goToNewProduct()">Add new product</button>
             </div>
             <div>
-                <button style="background-color: #196ae5;" onclick="handleCart()">cart</button>
+                <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><b> cart</b></button>
                 <button onclick="handleLogout()">logout</button>
             </div>
         </div>
@@ -40,10 +40,9 @@
             </select>
         </div>
         <div id="displayProduct" class="display-product">
-
             <% @products.each do |product| %>
                 <div class="card">
-                    <img src=<%= product.image_link %> alt="" srcset="" height="40%" width="100%" />
+                    <img src=<%= product.image_link %> alt="" srcset="" height="40%" width="fit-content" />
                     <section class="titleSection" > <%= product.title %></section>
                     <section class="categorySection" >
                         <h3><%= product.category %></h3> 
@@ -56,7 +55,6 @@
                 </div>
             <% end %>
         </div>
-
     </div>
     <%= javascript_include_tag "allproductsjs","data-turbo-track" => "reload" %>
 </body>

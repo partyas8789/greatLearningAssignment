@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get "/signup", :to=> "signup#signup"
   get "/cart", :to=> "cart#cart"
   get "/allproducts", :to=> "allproducts#allproducts"
-  get "/allproductsDetails", :to=> "product_details#product_details"
+  get "/allproductsDetails/giverate", :to=> "give_rate#give_rate"
   get "/addnewproduct", :to=> "add_new_product#add_new_product"
-  get "/giverate", :to=> "give_rate#give_rate"
+  get "/allproductsDetails/:id", :to=> "product_details#product_details"
 end

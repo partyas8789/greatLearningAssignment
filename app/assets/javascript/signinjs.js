@@ -1,4 +1,3 @@
-
 let emailAlert = document.getElementById("emailAlert")
 let passwordAlert = document.getElementById("passwordAlert")
 

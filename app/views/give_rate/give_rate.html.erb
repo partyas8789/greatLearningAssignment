@@ -16,8 +16,7 @@
             <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
                 height="80%" alt="">
             <div>
-                <button style="background-color: #196ae5;" onclick="handleCart()">cart</button>
-                <button onclick="handleLogout()">logout</button>
+                <button onclick="gotoHome()"><i class="fa fa-home fa-3x" aria-hidden="true"></i><b>home</b></button>
             </div>
         </div>        
         <div id="addRating" class="add-rating">
@@ -32,7 +31,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <%= javascript_include_tag "addRatingjs","data-turbo-track" => "reload" %>
 </body>

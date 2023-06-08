@@ -24,8 +24,6 @@ const displayCart = async () => {
             `
         }
     })
-    
-    console.log(totalPrice);
     const subTotal = document.getElementById("subTotal")
     subTotal.innerHTML += `<h1>$ ${totalPrice}</h1>` 
 }
@@ -54,14 +52,8 @@ const handleRemove = (id) => {
         });
 }
 
-
-const handleBack = () => {
+const gotoHome = () => {
     window.location.href = './allproducts'
-}
-
-const handleLogout = () => {
-    localStorage.token = false
-    window.location.href = './signin'
 }
 
 if (localStorage.token == "false") {
@@ -73,5 +65,5 @@ if (localStorage.token == "false") {
 }
 
 const gotoSignin = () => {
-    window.location.href = "./signin"
+    window.location.href = "http://127.0.0.1:3000/signin"
 }

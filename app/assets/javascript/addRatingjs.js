@@ -37,7 +37,7 @@ const handleSubmit = () => {
                 if (eachData.user_id == userId && eachData.product_id == productId) {
                     toogle = true
                     alert("you have already given a feedback for this product. Thank you!!")
-                    window.location.href = "./allproductsDetails"
+                    window.location.href = 'http://127.0.0.1:3000/allproducts'
                 }
             })
 
@@ -90,7 +90,7 @@ const handleSubmit = () => {
                         .then(response => response.json())
                         .then(responseData => {
                             alert("thank you for your feedback !!!")
-                            window.location.href = "./allproductsDetails"
+                            window.location.href = 'http://127.0.0.1:3000/allproducts'
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -105,15 +105,6 @@ const handleSubmit = () => {
     }
 }
 
-const handleCart = () => {
-    window.location.href = "./cart"
-}
-
-const handleLogout = () => {
-    localStorage.token = false
-    window.location.href = "./signin"
-}
-
 if (localStorage.token == "false") {
     const herosection = document.getElementById("heroSection")
     herosection.innerHTML = `
@@ -122,6 +113,10 @@ if (localStorage.token == "false") {
     `
 }
 
+const gotoHome = () => {
+    window.location.href = 'http://127.0.0.1:3000/allproducts'
+}
+
 const gotoSignin = () => {
-    window.location.href = "./signin"
+    window.location.href = "http://127.0.0.1:3000/signin"
 }

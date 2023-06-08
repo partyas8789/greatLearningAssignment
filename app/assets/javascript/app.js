@@ -1,5 +1,3 @@
-
-
 let nameAlert = document.getElementById("nameAlert")
 let emailAlert = document.getElementById("emailAlert")
 let passwordAlert = document.getElementById("passwordAlert")
@@ -13,7 +11,6 @@ const error = {
     email: false,
     password: false
 }
-
 
 const nameCheck = (event) => {
     names = event.target.value

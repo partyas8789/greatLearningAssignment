@@ -6,7 +6,7 @@ const handleLogout = () => {
     window.location.href = "./signin"
 }
 const gotoSignin = () => {
-    window.location.href = "./signin"
+    window.location.href = "http://127.0.0.1:3000/signin"
 }
 
 async function findProduct() {
@@ -58,10 +58,9 @@ const displayCards = (productData) => {
     })
 }
 
-
 const getDetails = (id) => {
     localStorage.setItem("productId", id);
-    window.location.href = "./allproductsDetails"
+    window.location.href = `./allproductsDetails/${id}`
 }
 findProduct()
 
@@ -79,7 +78,6 @@ const addCartItems = (id) => {
     setTimeout(() => {
         product.innerText = "add to cart"
     }, 1000);
-
 
     const handleCart = async () => {
         const responseOfCart = await fetch("http://127.0.0.1:3000/api/cart/v1/carts")
@@ -114,7 +112,6 @@ const addCartItems = (id) => {
                             console.error('Error:', error);
                         });
                 }
-
             })
         }
         if (!toogle) {
@@ -141,7 +138,6 @@ const addCartItems = (id) => {
                     console.error('Error:', error);
                 });
         }
-
     }
     handleCart()
 }

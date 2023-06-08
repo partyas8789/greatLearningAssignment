@@ -18,13 +18,11 @@
         <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
             height="80%" alt="">
         <div>
-            <button style="background-color: #196ae5;" onclick="handleBack()">back</button>
-            <button onclick="handleLogout()">logout</button>
+            <button onclick="gotoHome()"><i class="fa fa-home fa-3x" aria-hidden="true"></i><b>home</b></button>
         </div>
     </div>
     <div class="cart-container" >
-        <div id="cartItems" class="cart-items" >
-        </div>            
+        <div id="cartItems" class="cart-items" ></div>            
         <div class="check-out-div" >
             <div id="subTotal" class="sub-total" >
                 <h1>SUBTOTAL</h1>
@@ -32,11 +30,8 @@
             <div class="check-out-buttton" >
                 <button onclick="handleTotalSum()" >CHECKOUT</button>
             </div>
-        </div>
-        
-    </div>
-
-    
+        </div>        
+    </div>    
     <%= javascript_include_tag "cartjs","data-turbo-track" => "reload" %>
 </body>
 
