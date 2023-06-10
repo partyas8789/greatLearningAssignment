@@ -1,5 +1,5 @@
 const herosection = document.getElementById("heroSection")
-var data;
+// var data;
 
 function setCookies(name, value, daysToLive) {
     const date = new Date()
@@ -16,9 +16,9 @@ function getCookies(name) {
     const cDecoded = decodeURIComponent(document.cookie)
     const cArray = cDecoded.split("; ")
     let result = null
-    cArray.forEach(element=>{
-        if(element.indexOf(name)==0){
-            result = element.substring(name.length+1)
+    cArray.forEach(element => {
+        if (element.indexOf(name) == 0) {
+            result = element.substring(name.length + 1)
         }
     })
     return result
@@ -32,63 +32,29 @@ const handleLogout = () => {
 const gotoSignin = () => {
     window.location.href = "http://127.0.0.1:3000/signin"
 }
-
-async function findProduct() {
-    const response = await fetch("http://127.0.0.1:3000/api/product/v1/products")
-    data = await response.json()
-    filteredData = data
-}
-
 const userId = getCookies("userId")
 
 const sort = () => {
     const category = document.getElementById("searchCategories").value
-    const choosePrice = document.getElementById("choosePrice").value
-    const chooseRating = document.getElementById("chooseRating").value
-    let filteredData = data
-    if (category !== "") {
-        filteredData = filteredData.filter(eachData => (eachData.category.toLowerCase()).includes(category))
-    }
-    if (choosePrice !== "") {
-        if (choosePrice === "increasing order") {
-            filteredData = filteredData.sort((a, b) => a.price - b.price);
-        } else {
-            filteredData = filteredData.sort((a, b) => b.price - a.price);
-        }
-    }
-    if (chooseRating !== "") {
-        filteredData = filteredData.filter(eachData => eachData.rate > chooseRating)
-    }
-    displayCards(filteredData)
-}
-const displayCards = (productData) => {
-    displayProduct.innerHTML = ""
-    if (productData == "") {
-        displayProduct.innerHTML = `<h1>Sorry, no result found !!</h1>`
-    }
-    productData.map((eachProduct) => {
-        displayProduct.innerHTML += `
-        <div class="card">
-            <img src=${eachProduct.image_link} alt="" srcset="" height="40%" />
-            <section class="titleSection" >${eachProduct.title}</section>
-            <section class="categorySection" >
-                <h3>${eachProduct.category}</h3> 
-                <h3 class="price" >$ ${eachProduct.price}</h3>          
-            </section>
-            <section class="buttonSection" >
-                <button onclick="getDetails(${eachProduct.id})">More Details</button>
-                <button id=${eachProduct.id} onclick="addCartItems(${eachProduct.id})">add to cart</button>
-            </section>        
-        </div>        
-        `
-    })
-}
+    const price = document.getElementById("choosePrice").value
+    const rating = document.getElementById("chooseRating").value
+    const productDetailContainer = document.getElementById("displayProduct")
 
+    fetch(`http://127.0.0.1:3000/allproducts/filtered_products?category=${category}&price=${price}&rating=${rating}`)
+        .then(response => response.json())
+        .then(responseData => {
+            productDetailContainer.innerHTML=responseData.cards
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            console.error('Error:', error.message);
+        });
+
+}
 const getDetails = (id) => {
     setCookies("productId", id, 365)
     window.location.href = `./allproductsDetails/${id}`
 }
-findProduct()
 
 const handleCart = () => {
     window.location.href = "./cart"

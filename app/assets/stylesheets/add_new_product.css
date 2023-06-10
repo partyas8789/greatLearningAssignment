@@ -56,7 +56,7 @@
 }
 
 .add_new_product_container {
-    width: 50%;
+    width: 500px;
     height: 95%;
     display: flex;
     flex-direction: column;
@@ -144,5 +144,11 @@
     .navbar {
         padding-left: 10px;
         padding-right: 2px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .add_new_product_container {
+        width: 95vw;
     }
 }

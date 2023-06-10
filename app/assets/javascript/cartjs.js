@@ -39,7 +39,7 @@ const displayCart = async () => {
         }
     })
     const subTotal = document.getElementById("subTotal")
-    subTotal.innerHTML += `<h1>$ ${totalPrice}</h1>` 
+    subTotal.innerHTML += `<h2>$ ${totalPrice}</h2>` 
 }
 displayCart()
 

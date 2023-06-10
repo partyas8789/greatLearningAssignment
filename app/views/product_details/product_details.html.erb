@@ -16,22 +16,22 @@
         <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
             height="80%" alt="">
         <div>
-            <button onclick="gotoHome()"><i class="fa fa-home fa-3x" aria-hidden="true"></i><b>home</b></button>
+            <button onclick="gotoHome()"><i class="fa fa-home fa-3x" aria-hidden="true"></i></button>
         </div>
     </div>
 
     <div class="product-detail-container">        
         <div id="productDetailContainer" class="product-details-div">
             <div class="product-details-img">
-                <img src=<%= @eachProductDetails.image_link %> style="max-height: 100%;" alt="" srcset=""  width="100%" />
+                <img src=<%= @eachProductDetails.image_link %>  alt="" srcset="" />
             </div>
              <div class="product-alldetails">
                 <section class="section"><%= @eachProductDetails.title %></section>
                 <section class="sections"><%= @eachProductDetails.category %></section>
-                <section class="sections">
+                <section class="sections abc">
                     <div><i class="fa fa-star" aria-hidden="true"></i><%= @eachProductDetails.rate %> </div>
                     <div><i class="fa fa-user" aria-hidden="true"></i><%= @eachProductDetails.total_person %></div>
-                    <div><button onclick="gotoRatingPage()">give rating</button></div>
+                    <button onclick="gotoRatingPage()">give rating</button>
                 </section>
             <div class="description"><%= @eachProductDetails.description %></div>
         </div>

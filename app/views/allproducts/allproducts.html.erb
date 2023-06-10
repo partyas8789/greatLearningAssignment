@@ -27,8 +27,8 @@
             <input type="text" name="" onkeyup="sort()" id="searchCategories" placeholder="search categories">
             <select id="choosePrice" onclick="sort()">
                 <option disabled selected value="">--choose price option--</option>
-                <option value="increasing order">low to high</option>
-                <option value="decreasing order">high to low</option>
+                <option value="asce">low to high</option>
+                <option value="desc">high to low</option>
             </select>
             <select id="chooseRating" onclick="sort()">
                 <option disabled selected value="">--choose rating option--</option>
@@ -39,22 +39,7 @@
                 <option value="4">above 4</option>
             </select>
         </div>
-        <div id="displayProduct" class="display-product">
-            <% @products.each do |product| %>
-                <div class="card">
-                    <img src=<%= product.image_link %> alt="" srcset="" height="40%" width="fit-content" />
-                    <section class="titleSection" > <%= product.title %></section>
-                    <section class="categorySection" >
-                        <h3><%= product.category %></h3> 
-                        <h3 class="price">$ <%= product.price %></h3>                
-                    </section>
-                    <section class="buttonSection" >
-                        <button onclick="getDetails(<%= product.id %>)">More Details</button>
-                        <button id=<%= product.id %> onclick="addCartItems(<%= product.id %>)">add to cart</button>
-                    </section>        
-                </div>
-            <% end %>
-        </div>
+        <%= render partial: "allproducts/partials/productcard"%>
     </div>
     <%= javascript_include_tag "allproductsjs","data-turbo-track" => "reload" %>
 </body>
