@@ -43,7 +43,7 @@ const sort = () => {
     fetch(`http://127.0.0.1:3000/allproducts/filtered_products?category=${category}&price=${price}&rating=${rating}`)
         .then(response => response.json())
         .then(responseData => {
-            productDetailContainer.innerHTML=responseData.cards
+            productDetailContainer.innerHTML = responseData.cards
         })
         .catch(error => {
             console.error('Error:', error);
@@ -65,73 +65,82 @@ const goToNewProduct = () => {
 }
 
 const addCartItems = (id) => {
-    const product = document.getElementById(id)
-    product.innerText = "items added !!"
-    setTimeout(() => {
-        product.innerText = "add to cart"
-    }, 1000);
+    const tokenCheck = getCookies("token")
+    if (tokenCheck !== "true") {
+        const herosection = document.getElementById("heroSection")
+        herosection.innerHTML = `
+            <img class="error_img" src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
+            <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
+        `
+    } else {
+        const product = document.getElementById(id)
+        product.innerText = "items added !!"
+        setTimeout(() => {
+            product.innerText = "add to cart"
+        }, 1000);
 
-    const handleCart = async () => {
-        const responseOfCart = await fetch("http://127.0.0.1:3000/api/cart/v1/carts")
-        const responseOfProduct = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${id}`)
-        const dataOfCart = await responseOfCart.json()
-        const dataOfProduct = await responseOfProduct.json()
+        const handleCart = async () => {
+            const responseOfCart = await fetch("http://127.0.0.1:3000/api/cart/v1/carts")
+            const responseOfProduct = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${id}`)
+            const dataOfCart = await responseOfCart.json()
+            const dataOfProduct = await responseOfProduct.json()
 
-        const base64 = btoa(JSON.stringify(dataOfProduct))
+            const base64 = btoa(JSON.stringify(dataOfProduct))
 
-        let toogle = false
-        if (dataOfCart !== "" && dataOfCart !== undefined && dataOfCart.length > 0) {
-            dataOfCart.map((eachData) => {
-                if (eachData.user_id == userId && eachData.product_id == id) {
-                    toogle = true
-                    const allParms = {
-                        quantity: eachData.quantity + 1
-                    };
+            let toogle = false
+            if (dataOfCart !== "" && dataOfCart !== undefined && dataOfCart.length > 0) {
+                dataOfCart.map((eachData) => {
+                    if (eachData.user_id == userId && eachData.product_id == id) {
+                        toogle = true
+                        const allParms = {
+                            quantity: eachData.quantity + 1
+                        };
 
-                    const options = {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(allParms)
-                    };
+                        const options = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(allParms)
+                        };
 
-                    fetch(`http://127.0.0.1:3000/api/cart/v1/carts/${eachData.id}`, options)
-                        .then(response => response.json())
-                        .then(responseData => {
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                }
-            })
-        }
-        if (!toogle) {
-            const allParms = {
-                quantity: 1,
-                productDetails: base64,
-                user_id: userId,
-                product_id: id
-            };
-
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(allParms)
-            };
-
-            fetch(`http://127.0.0.1:3000/api/cart/v1/carts/`, options)
-                .then(response => response.json())
-                .then(responseData => {
+                        fetch(`http://127.0.0.1:3000/api/cart/v1/carts/${eachData.id}`, options)
+                            .then(response => response.json())
+                            .then(responseData => {
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            }
+            if (!toogle) {
+                const allParms = {
+                    quantity: 1,
+                    productDetails: base64,
+                    user_id: userId,
+                    product_id: id
+                };
+
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(allParms)
+                };
+
+                fetch(`http://127.0.0.1:3000/api/cart/v1/carts/`, options)
+                    .then(response => response.json())
+                    .then(responseData => {
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
         }
+        handleCart()
     }
-    handleCart()
 }
 const token = getCookies("token")
 if (token != "true") {

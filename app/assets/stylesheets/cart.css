@@ -224,17 +224,25 @@
     .cart_items_container .img_container img {
         height: 96%;
         width: fit-content;
-
     }
 
     .cart_items_container .details {
         width: 100%;
         text-align: center;
-
     }
 
     .cart_items_container .details section button {
         margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .error_img {
+        max-width: 80%
+    }
+
+    .hero-section {
+        background-color: white;
     }
 }
 
