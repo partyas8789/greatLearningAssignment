@@ -165,13 +165,16 @@ body {
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 680px) {
 
     .allProductNavBar img,
     .allProductNavBar div {
         width: 30%;
         margin: 0;
-        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
 
     .allProductNavBar div button {
@@ -198,14 +201,22 @@ body {
 @media only screen and (max-width: 650px) {
     .error_img {
         max-width: 80%;
-
-    }
-
-    .hero-section {
-        background-color: white;
     }
 }
 
+@media only screen and (max-width: 320px) {
+    .buttonSection{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .buttonSection button{
+        margin: 0;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
 ::-webkit-scrollbar {
     display: none;
 }
