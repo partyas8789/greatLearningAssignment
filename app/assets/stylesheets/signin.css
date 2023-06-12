@@ -14,13 +14,28 @@
     align-items: center;
 }
 
-.hero-section .heading {
-    font-size: 48px;
+/* .abc{
+    font-size: 18px;
+    line-height: 64px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    text-align: center; 
+} */
+/* .hero-section .heading {
+    font-size: 18px;
     line-height: 64px;
     font-weight: 500;
     letter-spacing: 0.25px;
     text-align: center;
 }
+
+.sign-in-page-container .heading {
+    font-size: 38px;
+    line-height: 64px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    text-align: center;
+} */
 
 .sign-in-page {
     width: 700px;

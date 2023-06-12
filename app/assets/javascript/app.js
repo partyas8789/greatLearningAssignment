@@ -35,7 +35,7 @@ const emailCheck = (event) => {
 
     if (email === "" || /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/.test(email) == false) {
         error.email = false
-        sibling.innerText = "Email must be a valid address, e.g. example@example.com"
+        sibling.innerText = "Email must be a valid address"
     }
     else {
         error.email = true
@@ -49,7 +49,7 @@ const passwordCheck = (event) => {
 
     if (password === "" || password.length < 6 || password.length > 20 || /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) == false) {
         error.password = false
-        sibling.innerText = "Password must be alphanumeric (@,_and - are also allowed) and between 6-20 characters"
+        sibling.innerText = "Password must be alphanumeric"
     }
     else {
         error.password = true
@@ -108,9 +108,22 @@ const handleSignup = () => {
         }
         fetchingData()
     } else {
-        const password = document.getElementById("password")
-        const sibling = password.nextElementSibling
-        sibling.innerText = "please enter all details !!!"
+        if (!names) {
+            const name = document.getElementById("name")
+            const siblingOfName = name.nextElementSibling
+            siblingOfName.innerText = "Name must be contain 3-16 characters"
+        }
+        if (!email) {
+            const email = document.getElementById("email")
+            const siblingOfEmail = email.nextElementSibling
+            siblingOfEmail.innerText = "Email must be a valid address"
+        }
+
+        if (!password) {
+            const password = document.getElementById("password")
+            const siblingOfPassword = password.nextElementSibling
+            siblingOfPassword.innerText = "Password must be alphanumeric"
+        }
     }
 }
 

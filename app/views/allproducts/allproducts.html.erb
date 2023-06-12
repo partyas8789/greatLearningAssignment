@@ -14,8 +14,7 @@
     <div id="heroSection" class="hero-section ">
         <div class="navbar allProductNavBar">
             <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
-                height="80%" alt="">
-                
+                height="80%" alt="">                
             <% if cookies[:role] == "admin" %>
                 <div>
                     <button style="background-color: #196ae5;" onclick="goToNewProduct()">Add new product</button>
@@ -23,9 +22,8 @@
             <% end %>
 
             <div>
-                <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i><b> cart</b></button>
-                
-                <% if cookies[:token] %>
+                <% if cookies[:token] %>            
+                    <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i><b> cart</b></button>   
                     <button onclick="handleLogout()" >Logout</button>
                 <% else %>
                     <button onclick="handleLogin()" style="background-color: #196ae5;">Login</button>
@@ -53,5 +51,4 @@
     </div>
     <%= javascript_include_tag "allproductsjs","data-turbo-track" => "reload" %>
 </body>
-
 </html>

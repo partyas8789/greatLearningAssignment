@@ -1,13 +1,13 @@
 const cartItems = document.getElementById("cartItems")
-let totalPrice =0
+let totalPrice = 0
 
 function getCookies(name) {
     const cDecoded = decodeURIComponent(document.cookie)
     const cArray = cDecoded.split("; ")
     let result = null
-    cArray.forEach(element=>{
-        if(element.indexOf(name)==0){
-            result = element.substring(name.length+1)
+    cArray.forEach(element => {
+        if (element.indexOf(name) == 0) {
+            result = element.substring(name.length + 1)
         }
     })
     return result
@@ -21,7 +21,7 @@ const displayCart = async () => {
     data.map((eachData) => {
         const productDetails = JSON.parse(atob(eachData.productDetails))
         if (eachData.user_id == userId) {
-            totalPrice +=(productDetails.price * eachData.quantity)
+            totalPrice += (productDetails.price * eachData.quantity)
             cartItems.innerHTML += `
                 <div class="cart_items_container" >
                     <div class="img_container" >
@@ -39,31 +39,12 @@ const displayCart = async () => {
         }
     })
     const subTotal = document.getElementById("subTotal")
-    subTotal.innerHTML += `<h2>$ ${totalPrice}</h2>` 
+    subTotal.innerHTML += `<h2>$ ${totalPrice}</h2>`
 }
 displayCart()
 
-const handleTotalSum = () =>{
+const handleTotalSum = () => {
     alert(`Checkout - Subtotal: $ ${totalPrice}`)
-}
-
-const handleRemove = (id) => {
-    const url = `http://127.0.0.1:3000/api/cart/v1/carts/${id}`
-
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-
-    fetch(url, options)
-        .then(responseData => {
-            window.location.href = "./cart"
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
 }
 
 const gotoHome = () => {
@@ -81,4 +62,32 @@ if (token != "true") {
 
 const gotoSignin = () => {
     window.location.href = "http://127.0.0.1:3000/signin"
+}
+
+const handleRemove = (id) => {
+    const tokens = getCookies("token")
+    if (tokens == "true") {
+        const url = `http://127.0.0.1:3000/api/cart/v1/carts/${id}`
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        fetch(url, options)
+            .then(responseData => {
+                window.location.href = "./cart"
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    else {
+        const herosection = document.getElementById("heroSection")
+        herosection.innerHTML = `
+            <img class="error_img" src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
+            <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
+        `
+    }
 }

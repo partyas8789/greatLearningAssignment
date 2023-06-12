@@ -31,7 +31,9 @@
                 <section class="sections abc">
                     <div><i class="fa fa-star" aria-hidden="true"></i><%= @eachProductDetails.rate %> </div>
                     <div><i class="fa fa-user" aria-hidden="true"></i><%= @eachProductDetails.total_person %></div>
-                    <button onclick="gotoRatingPage()">give rating</button>
+                    <% if cookies[:token] %>
+                        <button onclick="gotoRatingPage()">give rating</button>
+                    <% end %>
                 </section>
             <div class="description"><%= @eachProductDetails.description %></div>
         </div>
