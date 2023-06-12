@@ -34,11 +34,26 @@ const gotoSignin = () => {
 }
 const userId = getCookies("userId")
 
-const sort = () => {
-    const category = document.getElementById("searchCategories").value
-    const price = document.getElementById("choosePrice").value
-    const rating = document.getElementById("chooseRating").value
-    const productDetailContainer = document.getElementById("displayProduct")
+const searchCategories = document.getElementById("searchCategories")
+const choosePrice = document.getElementById("choosePrice")
+const chooseRating = document.getElementById("chooseRating")
+const productDetailContainer = document.getElementById("displayProduct")
+
+let category
+let price
+let rating
+
+function debounced(cb, delay) {
+    let timeout
+    return (...args) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+            cb(...args)
+        }, delay);
+    }
+}
+
+const updatedDebounceText = debounced((category, price, rating) => {
 
     fetch(`http://127.0.0.1:3000/allproducts/filtered_products?category=${category}&price=${price}&rating=${rating}`)
         .then(response => response.json())
@@ -49,8 +64,20 @@ const sort = () => {
             console.error('Error:', error);
             console.error('Error:', error.message);
         });
+}, 1500)
 
-}
+searchCategories.addEventListener("input", e => {
+    category = e.target.value
+    updatedDebounceText(category, price, rating)
+})
+choosePrice.addEventListener("click", e => {
+    price = e.target.value
+    updatedDebounceText(category, price, rating)
+})
+chooseRating.addEventListener("click", e => {
+    rating = e.target.value
+    updatedDebounceText(category, price, rating)
+})
 const getDetails = (id) => {
     setCookies("productId", id, 365)
     window.location.href = `./allproductsDetails/${id}`
