@@ -27,9 +27,9 @@ function getCookies(name) {
     const cDecoded = decodeURIComponent(document.cookie)
     const cArray = cDecoded.split("; ")
     let result = null
-    cArray.forEach(element=>{
-        if(element.indexOf(name)==0){
-            result = element.substring(name.length+1)
+    cArray.forEach(element => {
+        if (element.indexOf(name) == 0) {
+            result = element.substring(name.length + 1)
         }
     })
     return result
@@ -38,7 +38,7 @@ function getCookies(name) {
 const handleSubmit = () => {
     if (error.rate) {
         const productId = getCookies("productId")
-        const userId = getCookies("userId") 
+        const userId = getCookies("userId")
 
         const findData = async () => {
             const response = await fetch("http://127.0.0.1:3000/api/productrate/v1/productrates")
@@ -109,28 +109,27 @@ const handleSubmit = () => {
                             console.error('Error:', error);
                         });
                 }
-                updateProduct()
             }
         }
         findData()
     } else {
-        alert("please enter valid rating of this product!!")
+        const errorMessage = document.getElementsByClassName("error")[0]
+        errorMessage.innerText = "please enter valid rating of this product!!"
     }
 }
 const token = getCookies("token")
 
 if (token != "true") {
     const herosection = document.getElementById("heroSection")
+    herosection.style.backgroundColor = "white"
     herosection.innerHTML = `
     <img class="error_img" src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
         <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
     `
 }
-
 const gotoHome = () => {
     window.location.href = 'http://127.0.0.1:3000/allproducts'
 }
-
 const gotoSignin = () => {
     window.location.href = "http://127.0.0.1:3000/signin"
 }

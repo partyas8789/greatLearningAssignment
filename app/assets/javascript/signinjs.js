@@ -1,6 +1,3 @@
-let emailAlert = document.getElementById("emailAlert")
-let passwordAlert = document.getElementById("passwordAlert")
-
 let email = "";
 let password = ""
 
@@ -11,10 +8,10 @@ const error = {
 
 function setCookies(name, value, daysToLive) {
     const date = new Date()
-    date.setTime(date.getTime() + daysToLive * 24 * 60 * 60 * 1000) 
+    date.setTime(date.getTime() + daysToLive * 24 * 60 * 60 * 1000)
     let expires = "expires=" + date.toUTCString();
     document.cookie = `${name}=${value}; ${expires}; path=/`
- }
+}
 
 const emailCheck = (event) => {
     email = event.target.value
@@ -56,13 +53,14 @@ const handleSignin = () => {
                         toogle = true
                         email = "";
                         password = ""
-                        setCookies("userId",eachUser.id,365)
+                        setCookies("userId", eachUser.id, 365)
+                        setCookies("role", eachUser.role, 365)
                     }
                 })
             }
 
             if (toogle) {
-                setCookies("token",true,365)
+                setCookies("token", true, 365)
                 window.location.href = "./allproducts"
             } else {
                 alert("please enter correct email & password !!!")
@@ -70,7 +68,9 @@ const handleSignin = () => {
         }
         fetchingData()
     } else {
-        alert("please enter email & password !!!")
+        const password = document.getElementById("password")
+        const siblinng = password.nextElementSibling
+        siblinng.innerText = "please enter email & password !!!"
     }
 }
 

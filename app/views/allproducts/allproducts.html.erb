@@ -15,12 +15,22 @@
         <div class="navbar allProductNavBar">
             <img src="https://www.edesk.com/wp-content/uploads/2020/05/Biggest-online-marketplaces-in-the-world.jpg"
                 height="80%" alt="">
+                
+            <% if cookies[:role] == "admin" %>
+                <div>
+                    <button style="background-color: #196ae5;" onclick="goToNewProduct()">Add new product</button>
+                </div>
+            <% end %>
+
             <div>
-                <button style="background-color: #196ae5;" onclick="goToNewProduct()">Add new product</button>
-            </div>
-            <div>
-                <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><b> cart</b></button>
-                <button onclick="handleLogout()">logout</button>
+                <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i><b> cart</b></button>
+                
+                <% if cookies[:token] %>
+                    <button onclick="handleLogout()" >Logout</button>
+                <% else %>
+                    <button onclick="handleLogin()" style="background-color: #196ae5;">Login</button>
+                <% end %>
+
             </div>
         </div>
         <div class="search-bar">

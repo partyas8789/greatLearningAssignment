@@ -23,6 +23,15 @@ class Api::User::V1::UsersController < ApplicationController
   end
 
   def update
+    user = User.find_by(id: params[:id])
+    if user
+      user.update(role: params[:role])
+      render json: user, status: 200
+    else
+      render json:{
+        error: "user not found"
+      }
+    end
   end
 
   def destroy

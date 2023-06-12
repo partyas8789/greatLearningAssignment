@@ -37,7 +37,6 @@ Rails.application.routes.draw do
   get "/cart", :to=> "cart#cart"
   get "/allproducts", :to=> "allproducts#allproducts"
   get "/allproducts/filtered_products", :to=> "allproducts#filtered_products"
-  # get "/allproducts/filtered_products1", :to=> "allproducts#filtered_products1"
   get "/allproductsDetails/giverate", :to=> "give_rate#give_rate"
   get "/addnewproduct", :to=> "add_new_product#add_new_product"
   get "/allproductsDetails/:id", :to=> "product_details#product_details"
