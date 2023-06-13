@@ -53,7 +53,10 @@ const checkAccess = () => {
 
 const handleTotalSum = () => {
     checkAccess()
-    alert("Order Sucessful !!")
+    const token = getCookies("token")
+    if (token == "true") {
+        alert("Order Sucessful !!")
+    }
 }
 
 const gotoHome = () => {

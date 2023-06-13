@@ -7,7 +7,7 @@
 
 $whitecolor : white;
 
-@mixin displayFlex{
+@mixin displayFlex {
     display: flex;
 }
 
@@ -17,7 +17,7 @@ $whitecolor : white;
     height: 100vh;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 .heading1 {
@@ -111,4 +111,18 @@ $whitecolor : white;
         width: 90vw;
         height: 100vh;
     }
+}
+
+@media only screen and (max-width: 415px) {
+
+    .sign-in-page-container {    
+        .button-container {    
+            button {
+                padding: 16px 4px;
+            }
+    
+        }
+    
+    }
+    
 }

@@ -163,3 +163,7 @@ const addCartItems = (id) => {
         handleCart()
     }
 }
+
+const handleLogin = () => {
+    window.location.href = "./signin"
+}
