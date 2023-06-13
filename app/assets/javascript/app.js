@@ -19,9 +19,9 @@ function setCookies(name, value, daysToLive) {
 const nameCheck = (event) => {
     names = event.target.value
     const sibling = event.target.nextElementSibling
-    if (names === "" || names.length < 3 || names.length > 17 || /^[A-Za-z ]+$/.test(names) == false) {
+    if (names === "" || names.length < 3  || /^[A-Za-z, ]*[^ ][A-Za-z, ]*$/.test(names) == false) {
         error.names = false
-        sibling.innerText = "Name must be contain 3-16 characters"
+        sibling.innerText = "Name must be contain 3 characters"
     }
     else {
         error.names = true

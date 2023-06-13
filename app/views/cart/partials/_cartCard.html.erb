@@ -1,0 +1,27 @@
+<div id="cartItems" class="cart-items">
+  <% @carts.each do |cart| %>
+    <% decoded_data = JSON.parse(Base64.decode64(cart.productDetails)) %>
+    <%= cookies[:userId] %>
+    "hh
+    <%= cart.user_id %>
+    <% if cookies[:userId] != cart.user_id %>
+      <div class="cart_items_container">
+        <div class="img_container">
+          <img src="<%= decoded_data['image_link'] %>" alt="">
+        </div>
+        <div class="details">
+          <section><%= decoded_data['title'] %></section>
+          <section>
+            Quantity: <%= cart.quantity %>
+            <div>
+              <button onClick="handleIncrease(<%= cart.product_id %>)"><h1>+</h1></button>
+              <button onClick="handleDecrease(<%= cart.product_id %>)"><h1>-</h1></button>
+            </div>
+          </section>
+          <section>Price: $ <%= decoded_data['price'] * cart.quantity %> </section>
+          <section><button onClick="handleRemove(<%= cart.id %>)">remove</button></section>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

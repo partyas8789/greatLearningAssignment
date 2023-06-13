@@ -140,23 +140,6 @@ body {
     color: white;
 }
 
-.errorPageButton {
-    background-color: #196ae5;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    padding: 16px 24px;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 1.25px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-}
-
 @media only screen and (max-width: 730px) {
     .search-bar {
         height: 55%;
@@ -198,25 +181,21 @@ body {
     }
 }
 
-@media only screen and (max-width: 650px) {
-    .error_img {
-        max-width: 80%;
-    }
-}
-
 @media only screen and (max-width: 320px) {
-    .buttonSection{
+    .buttonSection {
         display: flex;
         justify-content: space-between;
         padding-left: 0;
         padding-right: 0;
     }
-    .buttonSection button{
+
+    .buttonSection button {
         margin: 0;
         padding-left: 2px;
         padding-right: 2px;
     }
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
