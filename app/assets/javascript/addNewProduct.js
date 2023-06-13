@@ -109,22 +109,18 @@ function getCookies(name) {
     const cDecoded = decodeURIComponent(document.cookie)
     const cArray = cDecoded.split("; ")
     let result = null
-    cArray.forEach(element=>{
-        if(element.indexOf(name)==0){
-            result = element.substring(name.length+1)
+    cArray.forEach(element => {
+        if (element.indexOf(name) == 0) {
+            result = element.substring(name.length + 1)
         }
     })
     return result
 }
-const token = getCookies("token")
 
 const checkAccess = () => {
+    const token = getCookies("token")
     if (token != "true") {
-        const heroSection = document.getElementById("heroSection")
-        heroSection.innerHTML = `
-        <img class="error_img" src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
-            <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
-        `
+        window.location.href = "http://127.0.0.1:3000/signin"
     }
 }
 
@@ -132,42 +128,64 @@ const handleSubmitProduct = (event) => {
     event.preventDefault();
     checkAccess()
 
-    if (token == "true") {
+    if (title && price && description && category && image_link && rate && total_person) {
 
-        if (title && price && description && category && image_link && rate && total_person) {
+        const data = {
+            title: title,
+            price: price,
+            description: description,
+            category: category,
+            image_link: image_link,
+            rate: rate,
+            total_person: total_person
+        };
 
-            const data = {
-                title: title,
-                price: price,
-                description: description,
-                category: category,
-                image_link: image_link,
-                rate: rate,
-                total_person: total_person
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
 
-            };
-
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-
-            fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
-                .then(response => response.json())
-                .then(responseData => {
-                    window.location.href = "./allproducts"
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+        fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
+            .then(response => response.json())
+            .then(responseData => {
+                window.location.href = "./allproducts"
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    else {
+        if (!title) {
+            const title = document.getElementById("title")
+            title.nextElementSibling.innerText = "Required*"
         }
-        else {
-            alert("please enter all details!!!")
+        if (!price) {
+            const price = document.getElementById("price")
+            price.nextElementSibling.innerText = "Required*"
         }
-
+        if (!description) {
+            const description = document.getElementById("description")
+            description.nextElementSibling.innerText = "Required*"
+        }
+        if (!category) {
+            const category = document.getElementById("category")
+            category.nextElementSibling.innerText = "Required*"
+        }
+        if (!image_link) {
+            const image_link = document.getElementById("image_link")
+            image_link.nextElementSibling.innerText = "Required*"
+        }
+        if (!rate) {
+            const rate = document.getElementById("rate")
+            rate.nextElementSibling.innerText = "Required*"
+        }
+        if (!total_person) {
+            const total_person = document.getElementById("total_person")
+            total_person.nextElementSibling.innerText = "Required*"
+        }
     }
 }
 

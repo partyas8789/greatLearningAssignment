@@ -36,100 +36,99 @@ function getCookies(name) {
 }
 
 const handleSubmit = () => {
-    if (error.rate) {
-        const productId = getCookies("productId")
-        const userId = getCookies("userId")
+    const tokens = getCookies("token")
 
-        const findData = async () => {
-            const response = await fetch("http://127.0.0.1:3000/api/productrate/v1/productrates")
-            const productratesData = await response.json()
+    if (tokens != "true") {
+        window.location.href = "http://127.0.0.1:3000/signin"
+    }
+    else {
+        if (error.rate) {
+            const productId = getCookies("productId")
+            const userId = getCookies("userId")
 
-            let toogle = false
+            const findData = async () => {
+                const response = await fetch("http://127.0.0.1:3000/api/productrate/v1/productrates")
+                const productratesData = await response.json()
 
-            productratesData.map((eachData) => {
-                if (eachData.user_id == userId && eachData.product_id == productId) {
-                    toogle = true
-                    alert("you have already given a feedback for this product. Thank you!!")
-                    window.location.href = 'http://127.0.0.1:3000/allproducts'
-                }
-            })
+                let toogle = false
 
-            if (!toogle) {
-                const rateAllParms = {
-                    "rate_of_product": rate,
-                    "user_id": userId,
-                    "product_id": productId
-                };
+                productratesData.map((eachData) => {
+                    if (eachData.user_id == userId && eachData.product_id == productId) {
+                        toogle = true
+                        alert("you have already given a feedback for this product. Thank you!!")
+                        window.location.href = 'http://127.0.0.1:3000/allproducts'
+                    }
+                })
 
-                const rateOptions = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(rateAllParms)
-                };
-
-                fetch("http://127.0.0.1:3000/api/productrate/v1/productrates", rateOptions)
-                    .then(response => response.json())
-                    .then(responseData => {
-                        updateProduct()
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-
-
-                const updateProduct = async () => {
-                    const productResponse = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${productId}`)
-                    const productData = await productResponse.json()
-
-                    const totalPerson = +productData.total_person
-                    const productDataRating = +productData.rate
-                    const updatedRate = (((productDataRating * totalPerson) + (+rate)) / (totalPerson + 1)).toFixed(2)
-
-                    const productParms = {
-                        "rate": updatedRate,
-                        "total_person": totalPerson + 1
+                if (!toogle) {
+                    const rateAllParms = {
+                        "rate_of_product": rate,
+                        "user_id": userId,
+                        "product_id": productId
                     };
-                    const productOptions = {
-                        method: 'PUT',
+
+                    const rateOptions = {
+                        method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(productParms)
+                        body: JSON.stringify(rateAllParms)
                     };
 
-                    fetch(`http://127.0.0.1:3000/api/product/v1/products/${productId}`, productOptions)
+                    fetch("http://127.0.0.1:3000/api/productrate/v1/productrates", rateOptions)
                         .then(response => response.json())
                         .then(responseData => {
-                            alert("thank you for your feedback !!!")
-                            window.location.href = 'http://127.0.0.1:3000/allproducts'
+                            updateProduct()
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
+
+
+                    const updateProduct = async () => {
+                        const productResponse = await fetch(`http://127.0.0.1:3000/api/product/v1/products/${productId}`)
+                        const productData = await productResponse.json()
+
+                        const totalPerson = +productData.total_person
+                        const productDataRating = +productData.rate
+                        const updatedRate = (((productDataRating * totalPerson) + (+rate)) / (totalPerson + 1)).toFixed(2)
+
+                        const productParms = {
+                            "rate": updatedRate,
+                            "total_person": totalPerson + 1
+                        };
+                        const productOptions = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(productParms)
+                        };
+
+                        fetch(`http://127.0.0.1:3000/api/product/v1/products/${productId}`, productOptions)
+                            .then(response => response.json())
+                            .then(responseData => {
+                                alert("thank you for your feedback !!!")
+                                window.location.href = 'http://127.0.0.1:3000/allproducts'
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
                 }
             }
+            findData()
+        } else {
+            const errorMessage = document.getElementsByClassName("error")[0]
+            errorMessage.innerText = "please enter valid rating of this product!!"
         }
-        findData()
-    } else {
-        const errorMessage = document.getElementsByClassName("error")[0]
-        errorMessage.innerText = "please enter valid rating of this product!!"
     }
 }
 const token = getCookies("token")
 
 if (token != "true") {
-    const herosection = document.getElementById("heroSection")
-    herosection.style.backgroundColor = "white"
-    herosection.innerHTML = `
-    <img class="error_img" src="https://img.freepik.com/free-vector/404-error-with-tired-person-concept-illustration_114360-7879.jpg?t=st=1684915965~exp=1684916565~hmac=da240731c942ae532829c01c4211509604c565b7a3287becd5d790490c508757" alt="">
-        <button class="errorPageButton" onclick="gotoSignin()" > go to login page</button>
-    `
+    window.location.href = "http://127.0.0.1:3000/signin"
 }
 const gotoHome = () => {
     window.location.href = 'http://127.0.0.1:3000/allproducts'
-}
-const gotoSignin = () => {
-    window.location.href = "http://127.0.0.1:3000/signin"
 }

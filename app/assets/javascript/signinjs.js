@@ -70,14 +70,12 @@ const handleSignin = () => {
     } else {
         if (!email) {
             const email = document.getElementById("email")
-            const siblingOfEmail = email.nextElementSibling
-            siblingOfEmail.innerText = "Email must be a valid address"
+            email.nextElementSibling.innerText = "Required*"
         }
 
         if (!password) {
             const password = document.getElementById("password")
-            const siblingOfPassword = password.nextElementSibling
-            siblingOfPassword.innerText = "Password must be alphanumeric"
+            password.nextElementSibling.innerText = "Required*"
         }
     }
 }

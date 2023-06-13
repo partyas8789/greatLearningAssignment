@@ -10,7 +10,9 @@ class AllproductsController < ApplicationController
         price = params[:price]
         rating = params[:rating]
 
-        @products = Product.where("category LIKE ? ", "#{category}%")
+        if category != "undefined"
+            @products = Product.where("category LIKE ? ", "#{category}%")
+        end
 
         if price == "asce"
             @products = @products.order("price ASC")

@@ -14,8 +14,6 @@ function getCookies(name) {
     return result
 }
 
-const token = getCookies("token")
-
 const gotoHome = () => {
     window.location.href = 'http://127.0.0.1:3000/allproducts'
 }
