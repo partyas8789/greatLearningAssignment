@@ -1,10 +1,11 @@
+<% total_price = 0 %>
 <div id="cartItems" class="cart-items">
   <% @carts.each do |cart| %>
-    <% decoded_data = JSON.parse(Base64.decode64(cart.productDetails)) %>
-    <%= cookies[:userId] %>
-    "hh
-    <%= cart.user_id %>
-    <% if cookies[:userId] != cart.user_id %>
+    <% decoded_data = JSON.parse(Base64.decode64(cart.productDetails)) %>    
+    <% value1 = cookies[:userId].to_i %>
+    <% value2 = cart.user_id.to_i %>
+    <% if value1 == value2 %>
+      <% total_price += decoded_data['price'].to_f * cart.quantity.to_i %> 
       <div class="cart_items_container">
         <div class="img_container">
           <img src="<%= decoded_data['image_link'] %>" alt="">
@@ -15,13 +16,26 @@
             Quantity: <%= cart.quantity %>
             <div>
               <button onClick="handleIncrease(<%= cart.product_id %>)"><h1>+</h1></button>
-              <button onClick="handleDecrease(<%= cart.product_id %>)"><h1>-</h1></button>
+              <% if cart.quantity ==1 %>
+                <button disabled onClick="handleDecrease(<%= cart.product_id %>)"><h1>-</h1></button>
+              <% else %>
+                <button onClick="handleDecrease(<%= cart.product_id %>)"><h1>-</h1></button>
+              <% end %>
             </div>
           </section>
-          <section>Price: $ <%= decoded_data['price'] * cart.quantity %> </section>
+          <section>Price: $ <%= number_with_precision(decoded_data['price'].to_f  * cart.quantity.to_i, precision: 2) %> </section>
           <section><button onClick="handleRemove(<%= cart.id %>)">remove</button></section>
         </div>
       </div>
     <% end %>
   <% end %>
-</div>
+  </div>
+  <div class="check-out-div" >
+    <div id="subTotal" class="sub-total" >
+      <h2>TOTAL</h2>
+      <h2>$ <%= number_with_precision(total_price, precision: 2) %></h2>
+    </div>
+    <div class="check-out-buttton" >
+      <button onclick="handleTotalSum()" >CHECKOUT</button>
+  </div>
+</div> 

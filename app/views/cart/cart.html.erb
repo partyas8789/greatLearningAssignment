@@ -8,8 +8,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag "cart", media: "all", "data-turbo-track" => "reload" %>
-    
-
 </head>
 
 <body>
@@ -21,20 +19,9 @@
             <button onclick="gotoHome()"><i class="fa fa-home fa-3x" aria-hidden="true"></i></button>
         </div>
     </div>
-    <div class="cart-container" >
-        <div id="cartItems" class="cart-items" ></div>    
-        <%#= render partial: "cart/partials/cartCard"%> 
-          
-        <div class="check-out-div" >
-            <div id="subTotal" class="sub-total" >
-                <h2>TOTAL</h2>
-            </div>
-            <div class="check-out-buttton" >
-                <button onclick="handleTotalSum()" >CHECKOUT</button>
-            </div>
-        </div>        
+    <div class="cart-container" id="cartContainer" >           
+        <%= render partial: "cart/partials/cartCard" %>          
     </div>    
     <%= javascript_include_tag "cartjs","data-turbo-track" => "reload" %>
 </body>
-
 </html>
