@@ -59,7 +59,11 @@ const getUpdatedData = () => {
     fetch(`http://127.0.0.1:3000/allproducts/filtered_products?category=${category}&price=${price}&rating=${rating}`)
         .then(response => response.json())
         .then(responseData => {
-            productDetailContainer.innerHTML = responseData.cards
+            productDetailContainer.innerHTML = responseData.cards            
+            const grandchildElement = productDetailContainer.querySelector('.card');
+            if (!grandchildElement) {
+                productDetailContainer.innerHTML = `<h1> Sorry, no result found !!!</h1>`
+            } 
         })
         .catch(error => {
             console.error('Error:', error);

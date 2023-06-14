@@ -14,6 +14,22 @@ function getCookies(name) {
 
 const userId = getCookies("userId")
 
+const cart = document.querySelector(".cart_items_container")
+if(!cart){     
+    const cartContainer = document.getElementById("cartContainer")
+    const heroSection = document.getElementById("heroSection")
+    heroSection.style.backgroundColor = "white"
+    cartContainer.innerHTML = `
+    <div class="emapty_cart" >
+        <img alt="" srcSet="https://static.vecteezy.com/system/resources/previews/004/964/514/large_2x/young-man-shopping-push-empty-shopping-trolley-free-vector.jpg" width="50%" />
+        <h1>Cart is empty</h1>
+        <button onClick="goToHome()" > Shop now</button>      
+    </div> `
+}
+
+const goToHome = () =>{
+    window.location.href ="http://127.0.0.1:3000/allproducts"
+}
 
 const handleDecrease = (id) => {
     const tokenCheck = getCookies("token")
