@@ -1,17 +1,16 @@
 class AllproductsController < ApplicationController
-    def allproducts
-        @products = Product.all
+    before_action :allProduct, only: [:allproducts, :filtered_products]
+
+    def allproducts        
     end
     
-    def filtered_products
-        @products = Product.all
-
+    def filtered_products    
         category = params[:category]
         price = params[:price]
         rating = params[:rating]
 
         if category != "undefined"
-            @products = Product.where("category LIKE ? ", "#{category}%")
+            @products = @products.where("category LIKE ? ", "#{category}%")
         end
 
         if price == "asce"
@@ -38,7 +37,11 @@ class AllproductsController < ApplicationController
         end
 
         partial=render_to_string(partial: "allproducts/partials/productcard")
-        render json: { success: true, cards: partial }
-      
+        render json: { success: true, cards: partial }      
     end 
+
+    private
+    def allProduct
+        @products = Product.all
+    end
 end
