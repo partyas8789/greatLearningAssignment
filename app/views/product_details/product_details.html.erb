@@ -20,7 +20,8 @@
         </div>
     </div>
 
-    <div class="product-detail-container">        
+    <div class="product-detail-container">    
+        <% if @eachProductDetails %>  
         <div id="productDetailContainer" class="product-details-div">
             <div class="product-details-img">
                 <img src=<%= @eachProductDetails.image_link %>  alt="" srcset="" />
@@ -31,12 +32,15 @@
                 <section class="sections abc">
                     <div><i class="fa fa-star" aria-hidden="true"></i><%= @eachProductDetails.rate %> </div>
                     <div><i class="fa fa-user" aria-hidden="true"></i><%= @eachProductDetails.total_person %></div>
-                    <% if cookies[:token] %>
+                    
                         <button onclick="gotoRatingPage()">give rating</button>
-                    <% end %>
+                    
                 </section>
             <div class="description"><%= @eachProductDetails.description %></div>
         </div>
+        <% else %> 
+            <h1>Sorry, no result found !!!</h1>
+        <% end %> 
     </div>    
     <%= javascript_include_tag "productDetailsjs","data-turbo-track" => "reload" %>
 </body>

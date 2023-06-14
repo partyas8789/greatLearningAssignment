@@ -84,6 +84,7 @@
   background-color: #f4f8f7;
   font-size: x-large;
   padding-left: 10px;
+  outline: none;
 }
 
 .error {

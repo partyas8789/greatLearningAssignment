@@ -27,7 +27,7 @@ const cartItems = {}
 const handleLogout = () => {
     deleteCookies("token")
     deleteCookies("role")
-    window.location.href = "./allproducts"
+    window.location.href = "http://127.0.0.1:3000/allproducts"
 }
 
 const userId = getCookies("userId")
@@ -51,8 +51,11 @@ function debounced(cb, delay) {
     }
 }
 
-const updatedDebounceText = debounced((category, price, rating) => {
+const updatedDebounceText = debounced(() => {
+    getUpdatedData()
+}, 1500)
 
+const getUpdatedData = () => {
     fetch(`http://127.0.0.1:3000/allproducts/filtered_products?category=${category}&price=${price}&rating=${rating}`)
         .then(response => response.json())
         .then(responseData => {
@@ -62,7 +65,7 @@ const updatedDebounceText = debounced((category, price, rating) => {
             console.error('Error:', error);
             console.error('Error:', error.message);
         });
-}, 1500)
+}
 
 searchCategories.addEventListener("input", e => {
     category = e.target.value
@@ -70,23 +73,23 @@ searchCategories.addEventListener("input", e => {
 })
 choosePrice.addEventListener("click", e => {
     price = e.target.value
-    updatedDebounceText(category, price, rating)
+    getUpdatedData()
 })
 chooseRating.addEventListener("click", e => {
     rating = e.target.value
-    updatedDebounceText(category, price, rating)
+    getUpdatedData()
 })
 const getDetails = (id) => {
     setCookies("productId", id, 365)
-    window.location.href = `./allproductsDetails/${id}`
+    window.location.href = `http://127.0.0.1:3000/allproductsDetails/${id}`
 }
 
 const handleCart = () => {
-    window.location.href = "./cart"
+    window.location.href = "http://127.0.0.1:3000/cart"
 }
 
 const goToNewProduct = () => {
-    window.location.href = "./addnewproduct"
+    window.location.href = "http://127.0.0.1:3000/addnewproduct"
 }
 
 const addCartItems = (id) => {
@@ -165,5 +168,5 @@ const addCartItems = (id) => {
 }
 
 const handleLogin = () => {
-    window.location.href = "./signin"
+    window.location.href = "http://127.0.0.1:3000/signin"
 }

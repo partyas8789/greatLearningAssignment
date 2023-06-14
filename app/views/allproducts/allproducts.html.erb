@@ -22,8 +22,8 @@
             <% end %>
 
             <div>
+            <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i><b> cart</b></button>   
                 <% if cookies[:token] %>            
-                    <button style="background-color: #196ae5;" onclick="handleCart()"><i class="fa fa-shopping-cart" aria-hidden="true"></i><b> cart</b></button>   
                     <button onclick="handleLogout()" >Logout</button>
                 <% else %>
                     <button onclick="handleLogin()" style="background-color: #196ae5;">Login</button>

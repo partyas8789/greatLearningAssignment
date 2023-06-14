@@ -10,3 +10,4 @@
 //= link addNewProduct.js
 //= link addRatingjs.js
 //= link style.css
+//= link error_page.js

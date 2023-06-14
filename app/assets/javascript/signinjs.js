@@ -31,7 +31,7 @@ const passwordCheck = (event) => {
     const siblinng = event.target.nextElementSibling
     if (password === "" || password.length < 6 || password.length > 20 || /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) == false) {
         error.password = false
-        siblinng.innerText = "Password must be alphanumeric"
+        siblinng.innerText = "Password must be alphanumeric & special character"
     }
     else {
         error.password = true
@@ -61,7 +61,7 @@ const handleSignin = () => {
 
             if (toogle) {
                 setCookies("token", true, 365)
-                window.location.href = "./allproducts"
+                window.location.href = "http://127.0.0.1:3000/allproducts"
             } else {
                 alert("please enter correct email & password !!!")
             }
@@ -81,5 +81,5 @@ const handleSignin = () => {
 }
 
 const gotoSignup = () => {
-    window.location.href = "./signup"
+    window.location.href = "http://127.0.0.1:3000/signup"
 }

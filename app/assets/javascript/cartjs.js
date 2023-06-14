@@ -125,11 +125,12 @@ const handleTotalSum = () => {
     const token = getCookies("token")
     if (token == "true") {
         alert("Order Sucessful !!")
+        window.location.href ="http://127.0.0.1:3000/allproducts"
     }
 }
 
 const gotoHome = () => {
-    window.location.href = './allproducts'
+    window.location.href = 'http://127.0.0.1:3000/allproducts'
 }
 
 const handleRemove = (id) => {
@@ -145,7 +146,7 @@ const handleRemove = (id) => {
 
         fetch(url, options)
             .then(responseData => {
-                window.location.href = "./cart"
+                window.location.href = "http://127.0.0.1:3000/cart"
             })
             .catch(error => {
                 console.error('Error:', error);

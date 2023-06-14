@@ -41,4 +41,7 @@ Rails.application.routes.draw do
   get "/allproductsDetails/giverate", :to=> "give_rate#give_rate"
   get "/addnewproduct", :to=> "add_new_product#add_new_product"
   get "/allproductsDetails/:id", :to=> "product_details#product_details"
+  get "/:error", :to=> "error_page#error_page"
+  get "/:error/:error", :to=> "error_page#error_page"
+  get "/:error/:error/:error", :to=> "error_page#error_page"
 end

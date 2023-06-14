@@ -8,10 +8,8 @@
                 <h3 class="price">$ <%= product.price %></h3>                
             </section>
             <section class="buttonSection" >
-                <button onclick="getDetails(<%= product.id %>)">More Details</button>
-                <% if cookies[:token] %>
-                    <button id=<%= product.id %> onclick="addCartItems(<%= product.id %>)">add to cart</button>
-                <% end %>
+                <button onclick="getDetails(<%= product.id %>)">More Details</button>                
+                <button id=<%= product.id %> onclick="addCartItems(<%= product.id %>)">add to cart</button>                
             </section>        
         </div>
     <% end %>

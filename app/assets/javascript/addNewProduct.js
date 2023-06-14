@@ -151,7 +151,7 @@ const handleSubmitProduct = (event) => {
         fetch("http://127.0.0.1:3000/api/product/v1/products/", options)
             .then(response => response.json())
             .then(responseData => {
-                window.location.href = "./allproducts"
+                window.location.href = "http://127.0.0.1:3000/allproducts"
             })
             .catch(error => {
                 console.error('Error:', error);

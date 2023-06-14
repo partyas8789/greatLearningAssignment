@@ -49,7 +49,7 @@ const passwordCheck = (event) => {
 
     if (password === "" || password.length < 6 || password.length > 20 || /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) == false) {
         error.password = false
-        sibling.innerText = "Password must be alphanumeric"
+        sibling.innerText = "Password must be alphanumeric & special character"
     }
     else {
         error.password = true
@@ -95,7 +95,7 @@ const handleSignup = () => {
                             setCookies("token", "true", 365)
                             setCookies("userId", responseData.id, 365)
                             setCookies("role", responseData.role, 365)
-                            window.location.href = "./allproducts"
+                            window.location.href = "http://127.0.0.1:3000/allproducts"
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -126,5 +126,5 @@ const handleSignup = () => {
 }
 
 const gotoSignin = () => {
-    window.location.href = "./signin"
+    window.location.href = "http://127.0.0.1:3000/signin"
 }

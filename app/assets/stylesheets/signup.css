@@ -72,6 +72,7 @@
     width: 100%;
     height: 60%;
     border: none;
+    outline: none;
     background-color: #f4f8f7;
     font-size: x-large;
     padding-left: 10px;
@@ -118,5 +119,12 @@
 
     .button-container button {
         padding: 16px 4px;
+    }
+}
+@media only screen and (max-width: 300px) {
+
+    .sign-up-page-container .button-container {
+        margin-top: 8px;
+        
     }
 }
