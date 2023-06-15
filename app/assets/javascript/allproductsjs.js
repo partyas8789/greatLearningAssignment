@@ -102,7 +102,7 @@ const addCartItems = (id) => {
         window.location.href = "http://127.0.0.1:3000/signin"
     } else {
         const product = document.getElementById(id)
-        product.innerText = "items added !!"
+        product.innerText = "item added!!"
         setTimeout(() => {
             product.innerText = "add to cart"
         }, 1000);

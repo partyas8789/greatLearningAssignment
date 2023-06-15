@@ -143,9 +143,10 @@ body {
 
 @media only screen and (max-width: 730px) {
     .search-bar {
-        height: 55%;
+        height: 45%;
         flex-wrap: wrap;
         justify-content: space-around;
+        margin-bottom: 10px;
     }
 }
 
@@ -166,12 +167,21 @@ body {
         margin: 0;
         padding: 0;
     }
+    .allProductNavBar div .new_product{
+        padding: 15px 10px;
+    }
 
     .allProductNavBar {
         margin: 0;
         padding: 0;
         display: flex;
         justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 594px) {
+    .allProductNavBar div .new_product{
+        padding: 0px 10px;
     }
 }
 
