@@ -13,6 +13,9 @@
     justify-content: center;
     align-items: center;
 }
+body {
+    background-color: #6E9AC4;
+}
 
 .heading1 {
     font-size: 48px;
@@ -39,6 +42,7 @@
     align-items: center;
     box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.4);
     border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 .sign-up-page-container {
@@ -54,6 +58,7 @@
     width: 100%;
     height: 15%;
     display: flex;
+    flex-direction: column;
 }
 
 .sign-up-page-container .input-feild {
@@ -98,6 +103,18 @@
     color: white;
 }
 
+.button-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.pointer {
+    cursor: pointer
+}
+
 .error {
     width: 100%;
     height: 40%;
@@ -108,7 +125,6 @@
 }
 
 @media only screen and (max-width: 730px) {
-
     .sign-up-page {
         width: 90vw;
         height: 100vh;
@@ -116,15 +132,19 @@
 }
 
 @media only screen and (max-width: 415px) {
-
     .button-container button {
         padding: 16px 4px;
     }
+
+    .sign-up-page-container {
+        height: 95%;
+        width: 90%;
+    }
 }
+
 @media only screen and (max-width: 300px) {
 
     .sign-up-page-container .button-container {
         margin-top: 8px;
-        
     }
 }
